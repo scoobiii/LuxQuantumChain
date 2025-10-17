@@ -2,15 +2,15 @@
 lux quantum chain
 
 ---
-layout: post
-tags: []
-categories: []
-#date: 2019-06-25 13:14:15
-#excerpt: ''
-#image: 'BASEURL/assets/blog/img/.png'
-#description:
-#permalink:
-title: 'lux quantum chain'
+    layout: post
+    tags: []
+    categories: []
+    #date: 2019-06-25 13:14:15
+    #excerpt: ''
+    #image: 'BASEURL/assets/blog/img/.png'
+    #description:
+    #permalink:
+    title: 'lux quantum chain'
 ---
 
 
@@ -165,28 +165,28 @@ Conservation:
 ```
 Material system: InAs/GaAs self-assembled quantum dots
 
-Structure:
-├─ GaAs substrate
-├─ Al₀.₃Ga₀.₇As DBR mirror (bottom)
-├─ GaAs cavity (λ/2 = 138 nm)
-├─ InAs quantum dots (self-assembled)
-│   ├─ Density: 10⁹-10¹⁰ cm⁻²
-│   ├─ Size: 20-30 nm diameter, 5-10 nm height
-│   └─ Emission: 900-950 nm (tunable)
-├─ GaAs cap layer
-└─ Al₀.₃Ga₀.₇As DBR mirror (top)
-
-Operation:
-├─ Excitation: Pulsed laser (532 nm, 80 MHz)
-├─ Emission: Single photons on-demand
-├─ Collection efficiency: 80% (cavity enhancement)
-└─ Brightness: 10⁷ photons/second
-
-Advantages:
-✅ On-demand generation (vs probabilistic SPDC)
-✅ High purity (g⁽²⁾(0) < 0.01)
-✅ High indistinguishability (>99%)
-✅ Scalable (semiconductor fabrication)
+    Structure:
+    ├─ GaAs substrate
+    ├─ Al₀.₃Ga₀.₇As DBR mirror (bottom)
+    ├─ GaAs cavity (λ/2 = 138 nm)
+    ├─ InAs quantum dots (self-assembled)
+    │   ├─ Density: 10⁹-10¹⁰ cm⁻²
+    │   ├─ Size: 20-30 nm diameter, 5-10 nm height
+    │   └─ Emission: 900-950 nm (tunable)
+    ├─ GaAs cap layer
+    └─ Al₀.₃Ga₀.₇As DBR mirror (top)
+    
+    Operation:
+    ├─ Excitation: Pulsed laser (532 nm, 80 MHz)
+    ├─ Emission: Single photons on-demand
+    ├─ Collection efficiency: 80% (cavity enhancement)
+    └─ Brightness: 10⁷ photons/second
+    
+    Advantages:
+    ✅ On-demand generation (vs probabilistic SPDC)
+    ✅ High purity (g⁽²⁾(0) < 0.01)
+    ✅ High indistinguishability (>99%)
+    ✅ Scalable (semiconductor fabrication)
 ```
 
 ### 2.3 Integrated Photonic Circuit (Silicon Photonics)
@@ -196,144 +196,144 @@ Advantages:
 ```
 Process: GlobalFoundries 45CLO (65nm CMOS-compatible)
 
-Wafer specifications:
-├─ Diameter: 300 mm (12 inch)
-├─ Substrate: Si (675 μm thick)
-├─ Buried oxide (BOX): SiO₂ (2 μm)
-├─ Device layer: Si (220 nm, <100> orientation)
-├─ Top cladding: SiO₂ (2 μm)
-└─ Metal layers: Al (3 levels for heaters/electrodes)
-
-Waveguide geometry:
-├─ Type: Strip waveguide (TE mode)
-├─ Width: 450-500 nm
-├─ Height: 220 nm
-├─ Loss: 2 dB/cm @ 1550 nm
-├─ Bend radius: 5 μm (low loss)
-└─ Mode confinement: >90%
+    Wafer specifications:
+    ├─ Diameter: 300 mm (12 inch)
+    ├─ Substrate: Si (675 μm thick)
+    ├─ Buried oxide (BOX): SiO₂ (2 μm)
+    ├─ Device layer: Si (220 nm, <100> orientation)
+    ├─ Top cladding: SiO₂ (2 μm)
+    └─ Metal layers: Al (3 levels for heaters/electrodes)
+    
+    Waveguide geometry:
+    ├─ Type: Strip waveguide (TE mode)
+    ├─ Width: 450-500 nm
+    ├─ Height: 220 nm
+    ├─ Loss: 2 dB/cm @ 1550 nm
+    ├─ Bend radius: 5 μm (low loss)
+    └─ Mode confinement: >90%
 ```
 
 #### Component Library
 
 **1. Directional Couplers (Beamsplitters)**
 ```python
-class DirectionalCoupler:
-    """
-    50:50 beamsplitter for Hadamard gate
-    """
-    def __init__(self):
-        self.specs = {
-            "coupling_length": 20e-6,  # 20 μm
-            "gap": 200e-9,              # 200 nm
-            "splitting_ratio": 0.50,    # ±1%
-            "bandwidth": 40e-9,         # 40 nm (C-band)
-            "excess_loss": 0.1,         # dB
-            "temperature_sensitivity": 0.01  # per °C
-        }
-    
-    def transfer_matrix(self, wavelength=1550e-9):
-        """Unitary transformation"""
-        kappa = self.coupling_coefficient(wavelength)
-        return np.array([
-            [np.cos(kappa), 1j*np.sin(kappa)],
-            [1j*np.sin(kappa), np.cos(kappa)]
-        ])
+    class DirectionalCoupler:
+        """
+        50:50 beamsplitter for Hadamard gate
+        """
+        def __init__(self):
+            self.specs = {
+                "coupling_length": 20e-6,  # 20 μm
+                "gap": 200e-9,              # 200 nm
+                "splitting_ratio": 0.50,    # ±1%
+                "bandwidth": 40e-9,         # 40 nm (C-band)
+                "excess_loss": 0.1,         # dB
+                "temperature_sensitivity": 0.01  # per °C
+            }
+        
+        def transfer_matrix(self, wavelength=1550e-9):
+            """Unitary transformation"""
+            kappa = self.coupling_coefficient(wavelength)
+            return np.array([
+                [np.cos(kappa), 1j*np.sin(kappa)],
+                [1j*np.sin(kappa), np.cos(kappa)]
+            ])
 ```
 
 **2. Thermo-Optic Phase Shifters**
 ```python
 class ThermoOpticPhaseShifter:
-    """
-    Phase shifter for arbitrary rotation gates
-    """
-    def __init__(self):
-        self.specs = {
-            "heater_material": "TiN",
-            "resistance": 1000,         # Ohms
-            "length": 500e-6,           # 500 μm
-            "power_for_pi": 10e-3,      # 10 mW
-            "response_time": 1e-6,      # 1 μs
-            "dn_dT": 1.86e-4            # Si thermo-optic coeff
-        }
-    
-    def phase_shift(self, power_W):
         """
-        Phase shift from applied power
-        
-        Δφ = (2π/λ) × Δn × L
-        Δn = (dn/dT) × ΔT
-        ΔT = P × R_th
+        Phase shifter for arbitrary rotation gates
         """
-        R_thermal = 5000  # K/W (thermal resistance)
-        delta_T = power_W * R_thermal
-        delta_n = self.specs["dn_dT"] * delta_T
-        L = self.specs["length"]
-        wavelength = 1550e-9
+        def __init__(self):
+            self.specs = {
+                "heater_material": "TiN",
+                "resistance": 1000,         # Ohms
+                "length": 500e-6,           # 500 μm
+                "power_for_pi": 10e-3,      # 10 mW
+                "response_time": 1e-6,      # 1 μs
+                "dn_dT": 1.86e-4            # Si thermo-optic coeff
+            }
         
-        return (2 * np.pi / wavelength) * delta_n * L
+        def phase_shift(self, power_W):
+            """
+            Phase shift from applied power
+            
+            Δφ = (2π/λ) × Δn × L
+            Δn = (dn/dT) × ΔT
+            ΔT = P × R_th
+            """
+            R_thermal = 5000  # K/W (thermal resistance)
+            delta_T = power_W * R_thermal
+            delta_n = self.specs["dn_dT"] * delta_T
+            L = self.specs["length"]
+            wavelength = 1550e-9
+            
+            return (2 * np.pi / wavelength) * delta_n * L
 ```
 
 **3. Mach-Zehnder Interferometers (MZI)**
 ```python
-class MachZehnderInterferometer:
-    """
-    Universal single-qubit gate (any U(2) operation)
-    """
-    def __init__(self):
-        self.dc1 = DirectionalCoupler()
-        self.dc2 = DirectionalCoupler()
-        self.phase_shifter_1 = ThermoOpticPhaseShifter()
-        self.phase_shifter_2 = ThermoOpticPhaseShifter()
-    
-    def unitary(self, phi1, phi2):
+    class MachZehnderInterferometer:
         """
-        Arbitrary single-qubit rotation
-        U = exp(iφ2) × Rz(φ1) × Ry(π/2)
+        Universal single-qubit gate (any U(2) operation)
         """
-        # First beamsplitter (Hadamard)
-        U1 = self.dc1.transfer_matrix()
+        def __init__(self):
+            self.dc1 = DirectionalCoupler()
+            self.dc2 = DirectionalCoupler()
+            self.phase_shifter_1 = ThermoOpticPhaseShifter()
+            self.phase_shifter_2 = ThermoOpticPhaseShifter()
         
-        # Phase shifts
-        P1 = np.array([[np.exp(1j*phi1), 0], [0, 1]])
-        P2 = np.array([[np.exp(1j*phi2), 0], [0, 1]])
-        
-        # Second beamsplitter
-        U2 = self.dc2.transfer_matrix()
-        
-        return U2 @ P2 @ P1 @ U1
+        def unitary(self, phi1, phi2):
+            """
+            Arbitrary single-qubit rotation
+            U = exp(iφ2) × Rz(φ1) × Ry(π/2)
+            """
+            # First beamsplitter (Hadamard)
+            U1 = self.dc1.transfer_matrix()
+            
+            # Phase shifts
+            P1 = np.array([[np.exp(1j*phi1), 0], [0, 1]])
+            P2 = np.array([[np.exp(1j*phi2), 0], [0, 1]])
+            
+            # Second beamsplitter
+            U2 = self.dc2.transfer_matrix()
+            
+            return U2 @ P2 @ P1 @ U1
 ```
 
 **4. Grating Couplers**
 ```python
-class GratingCoupler:
-    """
-    Fiber-to-chip coupling
-    """
-    def __init__(self):
-        self.specs = {
-            "period": 630e-9,           # 630 nm
-            "fill_factor": 0.5,
-            "etch_depth": 70e-9,        # 70 nm
-            "angle": 10,                # degrees (fiber angle)
-            "efficiency": 0.30,         # -5.2 dB
-            "bandwidth_1dB": 40e-9,     # 40 nm
-            "polarization": "TE"
-        }
-    
-    def coupling_efficiency(self, wavelength=1550e-9, angle=10):
+    class GratingCoupler:
         """
-        Overlap integral between fiber mode and grating
+        Fiber-to-chip coupling
         """
-        # Simplified model
-        lambda_center = 1550e-9
-        delta_lambda = wavelength - lambda_center
-        bandwidth = self.specs["bandwidth_1dB"]
+        def __init__(self):
+            self.specs = {
+                "period": 630e-9,           # 630 nm
+                "fill_factor": 0.5,
+                "etch_depth": 70e-9,        # 70 nm
+                "angle": 10,                # degrees (fiber angle)
+                "efficiency": 0.30,         # -5.2 dB
+                "bandwidth_1dB": 40e-9,     # 40 nm
+                "polarization": "TE"
+            }
         
-        # Gaussian roll-off
-        eta_spectral = np.exp(-(delta_lambda/bandwidth)**2)
-        eta_base = self.specs["efficiency"]
-        
-        return eta_base * eta_spectral
+        def coupling_efficiency(self, wavelength=1550e-9, angle=10):
+            """
+            Overlap integral between fiber mode and grating
+            """
+            # Simplified model
+            lambda_center = 1550e-9
+            delta_lambda = wavelength - lambda_center
+            bandwidth = self.specs["bandwidth_1dB"]
+            
+            # Gaussian roll-off
+            eta_spectral = np.exp(-(delta_lambda/bandwidth)**2)
+            eta_base = self.specs["efficiency"]
+            
+            return eta_base * eta_spectral
 ```
 
 ### 2.4 Quantum Gates Implementation
@@ -342,119 +342,119 @@ class GratingCoupler:
 
 **Hadamard Gate (H):**
 ```
-Matrix representation:
-H = 1/√2 × [1   1]
-           [1  -1]
-
-Physical implementation:
-├─ 50:50 beamsplitter (directional coupler)
-├─ Fidelity: 99.5%
-├─ Operation time: 10 ps (photon transit)
-└─ Error sources: 
-    ├─ Splitting ratio deviation: 0.3%
-    ├─ Loss: 0.1 dB
-    └─ Phase noise: 0.1%
-
-Circuit:
-    ──┤BS├──
-      50:50
+    Matrix representation:
+    H = 1/√2 × [1   1]
+               [1  -1]
+    
+    Physical implementation:
+    ├─ 50:50 beamsplitter (directional coupler)
+    ├─ Fidelity: 99.5%
+    ├─ Operation time: 10 ps (photon transit)
+    └─ Error sources: 
+        ├─ Splitting ratio deviation: 0.3%
+        ├─ Loss: 0.1 dB
+        └─ Phase noise: 0.1%
+    
+    Circuit:
+        ──┤BS├──
+          50:50
 ```
 
 **Phase Gate (P(θ)):**
 ```
-Matrix:
-P(θ) = [1      0    ]
-       [0  exp(iθ)]
-
-Physical implementation:
-├─ Thermo-optic phase shifter
-├─ θ range: 0 to 2π
-├─ Fidelity: 99.9%
-├─ Operation time: 1 μs (thermal response)
-└─ Stability: ±0.01 rad (with feedback)
-
-Circuit:
-    ──┤φ(θ)├──
+    Matrix:
+    P(θ) = [1      0    ]
+           [0  exp(iθ)]
+    
+    Physical implementation:
+    ├─ Thermo-optic phase shifter
+    ├─ θ range: 0 to 2π
+    ├─ Fidelity: 99.9%
+    ├─ Operation time: 1 μs (thermal response)
+    └─ Stability: ±0.01 rad (with feedback)
+    
+    Circuit:
+        ──┤φ(θ)├──
 ```
 
 **Rotation Gates (Rx, Ry, Rz):**
 ```python
-def Rx(theta):
-    """Rotation around X-axis"""
-    return np.array([
-        [np.cos(theta/2), -1j*np.sin(theta/2)],
-        [-1j*np.sin(theta/2), np.cos(theta/2)]
-    ])
-
-def Ry(theta):
-    """Rotation around Y-axis"""
-    return np.array([
-        [np.cos(theta/2), -np.sin(theta/2)],
-        [np.sin(theta/2), np.cos(theta/2)]
-    ])
-
-def Rz(theta):
-    """Rotation around Z-axis"""
-    return np.array([
-        [np.exp(-1j*theta/2), 0],
-        [0, np.exp(1j*theta/2)]
-    ])
-
-# Physical implementation: MZI with two phase shifters
-# Any single-qubit gate: U = exp(iα) × Rz(β) × Ry(γ) × Rz(δ)
-```
+    def Rx(theta):
+        """Rotation around X-axis"""
+        return np.array([
+            [np.cos(theta/2), -1j*np.sin(theta/2)],
+            [-1j*np.sin(theta/2), np.cos(theta/2)]
+        ])
+    
+    def Ry(theta):
+        """Rotation around Y-axis"""
+        return np.array([
+            [np.cos(theta/2), -np.sin(theta/2)],
+            [np.sin(theta/2), np.cos(theta/2)]
+        ])
+    
+    def Rz(theta):
+        """Rotation around Z-axis"""
+        return np.array([
+            [np.exp(-1j*theta/2), 0],
+            [0, np.exp(1j*theta/2)]
+        ])
+    
+    # Physical implementation: MZI with two phase shifters
+    # Any single-qubit gate: U = exp(iα) × Rz(β) × Ry(γ) × Rz(δ)
+    ```
 
 #### Two-Qubit Gates
 
 **CNOT Gate:**
 ```
-Matrix (4x4):
-CNOT = [1 0 0 0]
-       [0 1 0 0]
-       [0 0 0 1]
-       [0 0 1 0]
-
-Physical implementation (linear optics):
-├─ Method: CZ + Hadamards
-├─ Components: 2 beamsplitters + 1 phase shifter + ancilla photon
-├─ Success probability: 25% (post-selection)
-├─ Fidelity: 98.5%
-└─ Operation time: 1 μs
-
-Circuit:
-Control  ──•──       ──┤H├──•──┤H├──
-           │    ≡           │
-Target   ──⊕──       ───────•────────
-
-Alternative (dual-rail encoding):
-├─ Success probability: 50% (better)
-├─ Requires mode converters
-└─ Complexity: 2x components
+    Matrix (4x4):
+    CNOT = [1 0 0 0]
+           [0 1 0 0]
+           [0 0 0 1]
+           [0 0 1 0]
+    
+    Physical implementation (linear optics):
+    ├─ Method: CZ + Hadamards
+    ├─ Components: 2 beamsplitters + 1 phase shifter + ancilla photon
+    ├─ Success probability: 25% (post-selection)
+    ├─ Fidelity: 98.5%
+    └─ Operation time: 1 μs
+    
+    Circuit:
+    Control  ──•──       ──┤H├──•──┤H├──
+               │    ≡           │
+    Target   ──⊕──       ───────•────────
+    
+    Alternative (dual-rail encoding):
+    ├─ Success probability: 50% (better)
+    ├─ Requires mode converters
+    └─ Complexity: 2x components
 ```
 
 **Controlled-Z (CZ) Gate:**
 ```
-Matrix:
-CZ = [1  0  0  0]
-     [0  1  0  0]
-     [0  0  1  0]
-     [0  0  0 -1]
-
-Physical implementation:
-├─ Method: Quantum Zeno dynamics
-├─ Auxiliary photons: Required (herald success)
-├─ Components: 
-│   ├─ 2 beamsplitters (50:50)
-│   ├─ 1 phase shifter (π)
-│   └─ 4 SPADs (detection)
-├─ Success probability: 25%
-├─ Fidelity: 99%
-└─ Heralding: Yes (deterministic conditioning)
-
-Notes:
-- Post-selection based on SPAD detection patterns
-- Can be made near-deterministic with cluster states
-- Trade-off: resource overhead vs success probability
+    Matrix:
+    CZ = [1  0  0  0]
+         [0  1  0  0]
+         [0  0  1  0]
+         [0  0  0 -1]
+    
+    Physical implementation:
+    ├─ Method: Quantum Zeno dynamics
+    ├─ Auxiliary photons: Required (herald success)
+    ├─ Components: 
+    │   ├─ 2 beamsplitters (50:50)
+    │   ├─ 1 phase shifter (π)
+    │   └─ 4 SPADs (detection)
+    ├─ Success probability: 25%
+    ├─ Fidelity: 99%
+    └─ Heralding: Yes (deterministic conditioning)
+    
+    Notes:
+    - Post-selection based on SPAD detection patterns
+    - Can be made near-deterministic with cluster states
+    - Trade-off: resource overhead vs success probability
 ```
 
 ### 2.5 Measurement System
